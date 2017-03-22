@@ -1,0 +1,264 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>John's Movie Page</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+            background-color: #fff;
+            color: #F08F90;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+
+<!--overrides-->
+
+        .navbar {
+            background-color: rgba(25, 25, 112, 0.8);
+
+        }
+
+        .navbar-inverse {
+            background-image: linear-gradient(to bottom, #407A52 0, #407A52 100%);
+            border: none;
+            background-repeat: repeat-x;
+                background-repeat-x: repeat;
+                background-repeat-y: no-repeat;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #fff;
+        }
+
+<!--tooltip-->
+        .imgWrap {
+          position: relative;
+          height: 220px;
+          width: 342px;
+        }
+        .imgDescription {
+          position: absolute;
+          padding: 15px;
+          padding-left: 30px;
+          padding-right: 30px;
+          top: 10px;
+          bottom: 10px;
+          left: 15px;
+          right: 15px;
+          background: rgba(112, 128, 144, 0.8);
+          color: #fff;
+          visibility: hidden;
+          opacity: 0;
+          -webkit-transition: visibility opacity 0.5s;
+        }
+        .imgWrap:hover .imgDescription {
+          visibility: visible;
+          opacity: 1;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">The Greatest Films Ever Made</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="T-6YhRZowgc" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNDE5NjQzMDkzOF5BMl5BanBnXkFtZTcwODI3ODI3MQ@@._V1_SY1000_CR0,0,711,1000_AL_.jpg" width="220" height="342" alt="Tropic Thunder">
+        <div class="imgDescription">
+            <p>R | 1h 47min | Comedy | RT: 82%</p>
+            <br>
+            <p>Tugg Speedman (Ben Stiller), pampered action superstar, sets out for Southeast Asia to take part in the biggest, most-expensive war movie produced, but soon after filming begins, he and his co-stars, Oscar-winner Kirk Lazarus (Robert Downey Jr.), comic Jeff Portnoy (Jack Black) and the rest of the crew, must become real soldiers when fighting breaks out in that part of the jungle.</p>
+        </div>
+    </div>
+    <h2>Tropic Thunder (2008)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="QOQLeqRcgKc" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTc5MTUzOTAxMl5BMl5BanBnXkFtZTcwODQzMjg3NA@@._V1_SY1000_CR0,0,674,1000_AL_.jpg" width="220" height="342" alt="Senna">
+        <div class="imgDescription">
+            <p>PG-13 | 1h 46min | Documentary | RT: 92%</p>
+            <br>
+            <p>Senna is a 2010 British documentary that depicts the life and death of Brazilian motor-racing champion Ayrton Senna, directed by Asif Kapadia. The film's narrative focuses on Senna's racing career in Formula One, from his debut in the 1984 Brazilian Grand Prix to his death in an accident at the 1994 San Marino Grand Prix, with particular emphasis on his rivalry with fellow driver Alain Prost. It relies primarily on archive racetrack footage and home video clips provided by the Senna family, rather than retrospective video interviews, and has no formal commentary.</p>
+        </div>
+    </div>
+    <h2>Senna (2010)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="HMnVs287AJ4" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNDU2MjE4MTcwNl5BMl5BanBnXkFtZTgwNDExOTMxMDE@._V1_.jpg" width="220" height="342" alt="Airplane!">
+        <div class="imgDescription">
+            <p>PG | 1h 28min | Comedy | RT: 97%</p>
+            <br>
+            <p>This spoof comedy takes shots at the slew of disaster movies that were released in the 70s. When the passengers and crew of a jet are incapacitated due to food poisoning, a rogue pilot, afraid to fly, with a drinking problem must cooperate with his ex-girlfriend turned stewardess to bring the plane to a safe landing.</p>
+        </div>
+    </div>
+    <h2>Airplane! (1980)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="2AUmvWm5ZDQ" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SY1000_CR0,0,666,1000_AL_.jpg" width="220" height="342" alt="John Wick">
+        <div class="imgDescription">
+            <p>R | 1h 41min | Action | RT: 85%</p>
+            <br>
+            <p>Legendary assassin John Wick (Keanu Reeves) retired from his violent career after marrying the love of his life. Her sudden death leaves John in deep mourning. When sadistic mobster Iosef Tarasov (Alfie Allen) and his thugs steal John's prized car and kill the puppy that was a last gift from his wife, John unleashes the remorseless killing machine within and seeks vengeance. Meanwhile, Iosef's father (Michael Nyqvist) -- John's former colleague -- puts a huge bounty on John's head.</p>
+        </div>
+    </div>
+    <h2>John Wick (2014)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Z5ezsReZcxU" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_SY1000_SX686_AL_.jpg" width="220" height="342" alt="Deadpool">
+        <div class="imgDescription">
+            <p>R | 1h 48min | Action | RT: 84%</p>
+            <br>
+            <p>Wade Wilson (Ryan Reynolds) is a former Special Forces operator who now works as a mercenary. His world comes crashing down when evil scientist Ajax (Ed Skrein) tortures, disfigures and transforms him into Deadpool. The rogue experiment leaves Deadpool with accelerated healing powers and a twisted sense of humor. With help from mutant allies Colossus and Negasonic Teenage Warhead (Brianna Hildebrand), Deadpool uses his new skills to hunt down the man who nearly destroyed his life.</p>
+        </div>
+    </div>
+    <h2>Deadpool (2016)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="kP8O-MOqmcw" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQzMTcwMzgyMV5BMl5BanBnXkFtZTgwMzAyMzQ2MzE@._V1_SY1000_CR0,0,674,1000_AL_.jpg" width="220" height="342" alt="The Interview">
+        <div class="imgDescription">
+            <p>R | 1h 52min | Comedy | RT: 52%</p>
+            <br>
+            <p>Dave Skylark (James Franco) and his producer Aaron Rapoport (Seth Rogen) are the team behind the popular tabloid-TV show Skylark Tonight. After learning that North Korea's Kim Jong Un (Randall Park) is a huge fan of the show, they successfully set up an interview with him, hoping to legitimize themselves as actual journalists. However, as Dave and Aaron prepare for their journey to Pyongyang, the CIA steps in, recruits them, and assigns them an incredible mission: Assassinate the dictator.</p>
+        </div>
+    </div>
+    <h2>The Interview (2014)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="YtQq0T3ExLs" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BODI4NDY2NDM5M15BMl5BanBnXkFtZTgwNzEwOTMxMDE@._V1_.jpg" width="220" height="342" alt="Zoolander">
+        <div class="imgDescription">
+            <p>PG-13 | 1h 30min | Comedy | RT: 64%</p>
+            <br>
+            <p>Propelled to the top of the fashion world by a photogenic gaze he calls Blue Steel, dimwitted male model Derek Zoolander (Ben Stiller) thinks he's got a fourth consecutive win as Male Model of the Year in the bag. But, when his rival, Hansel (Owen Wilson), unexpectedly takes the crown, Derek is crushed. He becomes easy prey for fashion designer Jacobim Mugatu (Will Ferrell), who signs Derek to star in his Derelicte fashion show, then brainwashes him to kill Malaysia's prime minister.</p>
+        </div>
+    </div>
+    <h2>Zoolander (2001)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="5guMumPFBag" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTY3MTI5NjQ4Nl5BMl5BanBnXkFtZTcwOTU1OTU0OQ@@._V1_SY1000_CR0,0,676,1000_AL_.jpg" width="220" height="342" alt="Pacific Rim">
+        <div class="imgDescription">
+            <p>PG-13 | 2h 11min | Action | RT: 71%</p>
+            <br>
+            <p>Long ago, legions of monstrous creatures called Kaiju arose from the sea, bringing with them all-consuming war. To fight the Kaiju, mankind developed giant robots called Jaegers, designed to be piloted by two humans locked together in a neural bridge. However, even the Jaegers are not enough to defeat the Kaiju, and humanity is on the verge of defeat. Mankind's last hope now lies with a washed-up ex-pilot (Charlie Hunnam), an untested trainee (Rinko Kikuchi) and an old, obsolete Jaeger.</p>
+        </div>
+    </div>
+    <h2>Pacific Rim (2013)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="bS5P_LAqiVg" data-toggle="modal" data-target="#trailer">
+    <div class="imgWrap">
+        <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjQwMjU2ODU5NF5BMl5BanBnXkFtZTgwNTU1NjM4NTE@._V1_SY999_CR0,0,702,999_AL_.jpg" width="220" height="342" alt="Kung Fury">
+        <div class="imgDescription">
+            <p>NR | 31min | Action | RT: 86%</p>
+            <br>
+            <p>Kung Fury is a 2015 English-language Swedish martial arts action comedy short film written, directed by, and starring David Sandberg. It pays homage to 1980s martial arts and police action films. In it, a kung-fu cop (David Sandberg) travels back in time to kill Adolf Hitler.</p>
+        </div>
+    </div>
+    <h2>Kung Fury (2015)</h2>
+</div>
+
+    </div>
+  </body>
+</html>
